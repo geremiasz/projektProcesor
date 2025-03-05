@@ -1,0 +1,21 @@
+##Przykładowa pętla do użytku##
+
+for(let i = 0; i < 100; i++){
+        const row = document.createElement('tr');
+        row.id = "row-" + i;
+
+        const rowAddress = document.createElement('td');
+        rowAddress.textContent = i;
+        rowAddress.style.backgroundColor = "#b5d4ff";
+        rowAddress.className = "memoryTable-rowId";
+
+        const rowValue = document.createElement('td');
+        rowValue.textContent = "?";
+        rowValue.className = "memoryTable-valueRow"
+
+        row.appendChild(rowAddress);
+        row.appendChild(rowValue);
+
+        const memoryTable = document.getElementById('memoryTable');
+        memoryTable.appendChild(row);
+    }
