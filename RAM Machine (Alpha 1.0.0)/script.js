@@ -80,54 +80,49 @@ function toAddress(){
 }
 
 function createProgramTable(){
-    for(let i = 1; i < 17; i++){
-        const row = document.createElement('tr');
-        row.id = "programRow-" + i;
+    for(let i = 0; i < 100; i++){
+    const row = document.createElement('tr');
+    row.id = "row-" + i;
 
-        const id = document.createElement('td');
-        id.textContent = i;
-
-        const label = document.createElement('input');
-        label.type = 'text';
-
-        const instruction = document.createElement('select');
-        instruction.id = "select-" + i;
-
-        const load = document.createElement("option");
-            load.value = "load";
-            load.textContent = "load";
-        const store = document.createElement("option");
-            store.value = "store";
-            store.textContent = "store";
-        const sub = document.createElement("option");
-            sub.value = "sub";
-            sub.textContent = "sub";
-        const mult = document.createElement("option");
-            mult.value = "mult";
-            mult.textContent = "mult";
-        const div = document.createElement("option");
-            div.value = "div";
-            div.textContent = "div";
-        const read = document.createElement("option");
-            read.value = "read";
-            read.textContent = "read";
-        const write = document.createElement("option");
-            write.value = "write";
-            write.textContent = "write";
-        const jump = document.createElement("option");
-            jump.value = "jump";
-            jump.textContent = "jump";
-        const jgtz = document.createElement("option");
-            jgtz.value = "jgtz";
-            jgtz.textContent = "jgtz";
-        const jzero = document.createElement("option");
-            jzero.value = "jzero";
-            jzero.textContent = "jzero";
-        const halt = document.createElement("option");
-            halt.value = "halt";
-            halt.textContent = "halt";
-
-        const table = document.getElementById('programTable');
-        table.appendChild(row);
+    const rowAddress = document.createElement('td');
+    rowAddress.textContent = i;
+    const label = document.createElement('td')
+    if(i= 0){
+        label.textContent = "Początek";
+    }else{
+        label.textContent = "Nic"
     }
+
+    const argument = document.createElement('td');
+    const input_argument = document.createElement('input');
+    input_argument.type = "text";
+    argument.appendChild(input_argument);
+
+    const comment = document.createElement('td');
+    const input_comment = document.createElement('input');
+    input_comment.type = "text";
+    comment.appendChild(input_comment);
+
+    const rowValue = document.createElement('td');
+    const select = document.createElement('select');
+
+    const opcje = ["load", "store", "sub", "mult", "div", "read", "write", "jump", "jgtz", "jzero", "halt"];
+    opcje.forEach(opcja => {
+        const element = document.createElement("option");
+        element.value = opcja;
+        element.textContent = opcja;
+        select.appendChild(element);
+    });
+    rowValue.appendChild(select);
+    rowValue.className = "memoryTable-valueRow"
+
+    row.appendChild(rowAddress);
+    row.appendChild(label);
+    row.appendChild(rowValue);
+    row.appendChild(argument);
+    row.appendChild(comment);
+    
+    const memoryTable = document.getElementById('program');
+    memoryTable.appendChild(row);
+}
 }
