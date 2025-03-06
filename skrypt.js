@@ -10,6 +10,17 @@ for(let i = 0; i < 100; i++){
     }else{
         label.textContent = "Nic"
     }
+
+    const argument = document.createElement('td');
+    const input_argument = document.createElement('input');
+    input_argument.type = "text";
+    argument.appendChild(input_argument);
+
+    const comment = document.createElement('td');
+    const input_comment = document.createElement('input');
+    input_comment.type = "text";
+    comment.appendChild(input_comment);
+
     const rowValue = document.createElement('td');
     const select = document.createElement('select');
 
@@ -24,10 +35,11 @@ for(let i = 0; i < 100; i++){
     rowValue.className = "memoryTable-valueRow"
 
     row.appendChild(rowAddress);
+    row.appendChild(label);
     row.appendChild(rowValue);
+    row.appendChild(argument);
+    row.appendChild(comment);
     
-    
-
     const memoryTable = document.getElementById('program');
     memoryTable.appendChild(row);
 }
