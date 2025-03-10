@@ -124,4 +124,3 @@ function createProgramTable(){
         table.appendChild(row);
     }
 }
-}
