@@ -1,3 +1,6 @@
+let readGlobal = 0;
+let writeGlobal = 0;
+
 function createMemoryTable(){        
     for(let i = 0; i < 100; i++){
         const row = document.createElement('tr');
@@ -126,52 +129,97 @@ function createProgramTable(){
 }
 
 function startProgram(){
-    let num = 1;
     while(num < 17){
         let option = document.getElementById("select-" + num).value;
-        let argument = document.getElementById("argument-" + num);
-        if(option == "" || option == "halt"){
-            return;
-        }
-        useFunction(option, argument);
+        let argument = document.getElementById("argument-" + num).value;
         console.log(option);
+
+        switch(option){
+            case "":
+            case "halt":
+                return;
+            case "jump":
+            case "jgtz":
+            case "jzero":
+                useFunction(option, argument);
+                return;  
+        }
+
+        useFunction(option, argument);
         num++;
     }
 }
 
 function useFunction(option, argument){
-    switch(option, argument){
+    switch(option){
         case "load":
-            load(option, argument);
+            load(argument);
         break;
         case "store":
-            store(option, argument);
+            store(argument);
         break;
         case "sub":
-            sub(option, argument);
+            sub(argument);
         break;
         case "mult":
-            mult(option, argument);
+            mult(argument);
         break;
         case "div":
-            div(option, argument);
+            div(argument);
         break;
         case "read":
-            read(option, argument);
+            read(argument);
         break;
         case "write":
-            write(option, argument);
+            write(argument);
         break;
         case "jump":
-            jump(option);
+            jump(argument);
         break;
         case "jgtz":
-            jgtz(option);
+            if(document.getElementById("memoryTable-row-0").textContent > 0){
+                jump(argument);
+            }
         break;
         case "jzero":
-            jzero(option);
+            if(document.getElementById("memoryTable-row-0").textContent == 0){
+                jump(argument);
+            }
         break;
         case "halt":
             return;
     }
+}
+
+function load(argument){
+
+}
+
+function store(argument){
+
+}
+
+function sub(argument){
+
+}
+
+function mult(argument){
+
+}
+
+function div(argument){
+
+}
+
+function read(argument){
+
+}
+
+function write(argument){
+    
+}
+
+function jump(argument){
+    startProgram(argument);
+    return;
 }
