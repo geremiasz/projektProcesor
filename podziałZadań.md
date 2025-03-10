@@ -1,6 +1,6 @@
 ## Podział zadań
 **Michał Ki:**
-  - Stworzenie obsługi pamięci i górnego pola.
+  - Tabela odczytu i tabela zapisu.
   - Część funkcji procesora.
   - Animacje działania procesora.
 
