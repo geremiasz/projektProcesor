@@ -6,4 +6,4 @@ Projekt symulacji działania procesora (RAM Machine)
 
 - Język aplikacji: **JavaScript**
 - Manager projektu: **Jacek M**
-- Członkowie zespołu: **Michał K, Michał K**
+- Członkowie zespołu: **Michał Kk, Michał Ki**
