@@ -124,3 +124,54 @@ function createProgramTable(){
         table.appendChild(row);
     }
 }
+
+function startProgram(){
+    let num = 1;
+    while(num < 17){
+        let option = document.getElementById("select-" + num).value;
+        let argument = document.getElementById("argument-" + num);
+        if(option == "" || option == "halt"){
+            return;
+        }
+        useFunction(option, argument);
+        console.log(option);
+        num++;
+    }
+}
+
+function useFunction(option, argument){
+    switch(option, argument){
+        case "load":
+            load(option, argument);
+        break;
+        case "store":
+            store(option, argument);
+        break;
+        case "sub":
+            sub(option, argument);
+        break;
+        case "mult":
+            mult(option, argument);
+        break;
+        case "div":
+            div(option, argument);
+        break;
+        case "read":
+            read(option, argument);
+        break;
+        case "write":
+            write(option, argument);
+        break;
+        case "jump":
+            jump(option);
+        break;
+        case "jgtz":
+            jgtz(option);
+        break;
+        case "jzero":
+            jzero(option);
+        break;
+        case "halt":
+            return;
+    }
+}
