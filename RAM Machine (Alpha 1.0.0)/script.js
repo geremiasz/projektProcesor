@@ -80,49 +80,48 @@ function toAddress(){
 }
 
 function createProgramTable(){
-    for(let i = 0; i < 100; i++){
-    const row = document.createElement('tr');
-    row.id = "row-" + i;
+    for(let i = 1; i < 17; i++){
+        const row = document.createElement('tr');
+        row.id = "programRow-" + i;
 
-    const rowAddress = document.createElement('td');
-    rowAddress.textContent = i;
-    const label = document.createElement('td')
-    if(i= 0){
-        label.textContent = "Początek";
-    }else{
-        label.textContent = "Nic"
+        const id = document.createElement('td');
+        id.textContent = i;
+
+        const label = document.createElement('input');
+        label.type = 'text';
+        const labelWrap = document.createElement('td');
+        labelWrap.appendChild(label);
+
+        const instruction = document.createElement('select');
+        instruction.id = "select-" + i;
+
+        const options = ["load", "store", "sub", "mult", "div", "read", "write", "jump", "jgtz", "jzero", "halt"];
+
+        options.forEach(option => {
+            const element = document.createElement("option");
+            element.value = option;
+            element.textContent = option;
+            instruction.appendChild(element);
+        })
+        const selectWrap = document.createElement('td');
+        selectWrap.appendChild(instruction);
+
+        const argument = document.createElement('td');
+        argument.id = "argument-" + i;
+
+        const comment = document.createElement('input');
+        comment.type = 'text';
+        const commentWrap = document.createElement('td');
+        commentWrap.appendChild(comment);
+            
+        row.appendChild(id);
+        row.appendChild(labelWrap);
+        row.appendChild(selectWrap);
+        row.appendChild(argument);
+        row.appendChild(commentWrap);
+
+        const table = document.getElementById('programTable');
+        table.appendChild(row);
     }
-
-    const argument = document.createElement('td');
-    const input_argument = document.createElement('input');
-    input_argument.type = "text";
-    argument.appendChild(input_argument);
-
-    const comment = document.createElement('td');
-    const input_comment = document.createElement('input');
-    input_comment.type = "text";
-    comment.appendChild(input_comment);
-
-    const rowValue = document.createElement('td');
-    const select = document.createElement('select');
-
-    const opcje = ["load", "store", "sub", "mult", "div", "read", "write", "jump", "jgtz", "jzero", "halt"];
-    opcje.forEach(opcja => {
-        const element = document.createElement("option");
-        element.value = opcja;
-        element.textContent = opcja;
-        select.appendChild(element);
-    });
-    rowValue.appendChild(select);
-    rowValue.className = "memoryTable-valueRow"
-
-    row.appendChild(rowAddress);
-    row.appendChild(label);
-    row.appendChild(rowValue);
-    row.appendChild(argument);
-    row.appendChild(comment);
-    
-    const memoryTable = document.getElementById('program');
-    memoryTable.appendChild(row);
 }
 }
