@@ -1,0 +1,29 @@
+body{
+  padding: 1%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  text-align: center;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-image{
+  width: 100%;
+}
+
+main{
+  display: flex;
+  justify-content: space-between;
+}
