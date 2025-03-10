@@ -1,0 +1,35 @@
+.processorTable-div{
+    width: 10%;
+    height: 10vh;
+    border: .3vh solid black;
+    border-bottom: none;
+    background-color: #fff9a8;
+}
+
+.processorTable-title{
+    margin: 0;
+    text-align: center;
+    background-color: #fff9a8;
+    border-bottom: none;
+    padding: .3vh 0;
+}
+
+.processorTable-input{
+    background-color: #ddd;
+    border: .2vh solid #aaa;
+    width: 60%;
+    height: 20%;
+    font-weight: bold;
+}
+
+.processorTable-label{
+    margin-left: 2%;
+    width: 33%;
+    font-size: 80%;
+    vertical-align: text-top;
+}
+
+.processorTable-btn{
+    height: 6vh;
+    width: 4%;
+}
