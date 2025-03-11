@@ -189,7 +189,6 @@ async function startProgram(num, firstTime){
             case "jzero":
                 await sleep(1000);
                 jump(option, argument, num);
-                //useFunction(option, argument);
                 return;  
         }
         await sleep(1000);
@@ -223,26 +222,6 @@ function useFunction(option, argument){
         break;
         case "write":
             write(argument);
-        break;
-        case "jump":
-            jump(argument);
-        break;
-        case "jgtz":
-            if(document.getElementById("memoryTable-row-0").textContent > 0){
-                jump(argument);
-            }
-            else{
-                startProgram(argument, false);
-                return;
-            }
-        break;
-        case "jzero":
-            if(document.getElementById("memoryTable-row-0").textContent == 0){
-                jump(argument);
-            }
-            else{
-                let currentID = document.getElementById()
-            }
         break;
         case "halt":
             return;
