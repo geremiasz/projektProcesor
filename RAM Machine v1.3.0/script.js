@@ -20,7 +20,7 @@ function createMemoryTable() {
 
         const rowAddress = document.createElement('td');
         rowAddress.textContent = i;
-        rowAddress.style.backgroundColor = "#b5d4ff";
+        rowAddress.style.backgroundColor = "#3f84a3";
         rowAddress.className = "memoryTable-rowId";
 
         const rowValue = document.createElement('td');
@@ -29,11 +29,11 @@ function createMemoryTable() {
         rowValue.id ="memoryTable-row-" + i;
 
         if(i == 0){
-            row.style.backgroundColor = "#fff9a8";
-            rowAddress.style.backgroundColor = "#fff9a8";
+            row.style.backgroundColor = "#cc8029";
+            rowAddress.style.backgroundColor = "#cc8029";
         }
         else{
-            row.style.backgroundColor = "#dddddd";
+            row.style.backgroundColor = "#525252";
         }
 
         row.appendChild(rowAddress);

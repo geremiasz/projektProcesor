@@ -3,13 +3,13 @@
     height: 10vh;
     border: .3vh solid black;
     border-bottom: none;
-    background-color: #fff9a8;
+    background-color: #cc8029;
 }
 
 .processorTable-title{
     margin: 0;
     text-align: center;
-    background-color: #fff9a8;
+    background-color: #cc8029;
     border-bottom: none;
     padding: .3vh 0;
 }
