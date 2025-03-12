@@ -1,11 +1,19 @@
 let readGlobal = 1;
 let writeGlobal = 1;
 
-function sleep(ms) {
+// EVENTY WYKONYWANE PO ZAŁADOWANIU SIĘ APLIKACJI
+window.addEventListener("load", (event) => {
+    console.log("page is fully loaded");
+    document.querySelector('#startProgram').addEventListener('click', () => {
+        startProgram(1, true)
+    })
+});
+
+const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function createMemoryTable(){        
+function createMemoryTable() {
     for(let i = 0; i < 100; i++){
         const row = document.createElement('tr');
         row.id = "memoryRow-" + i;
