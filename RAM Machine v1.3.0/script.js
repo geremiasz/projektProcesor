@@ -131,8 +131,18 @@ function createProgramTable(){
         id.textContent = i;
         id.id = "programID-" + i;
 
+        const label2 = document.createElement('label');
+
+        const stop = document.createElement('input')
+        stop.type='checkbox';
+        stop.id = 'checkbox-'+i;
+
+        const circle = document.createElement('span')
+        circle.className = 'checkbox-circle';
+
         const label = document.createElement('input');
         label.type = 'text';
+
         const labelWrap = document.createElement('td');
         labelWrap.appendChild(label);
 
@@ -165,7 +175,11 @@ function createProgramTable(){
         comment.type = 'text';
         const commentWrap = document.createElement('td');
         commentWrap.appendChild(comment);
-            
+
+        label2.appendChild(stop);
+        label2.appendChild(circle);
+          
+        row.appendChild(label2);
         row.appendChild(id);
         row.appendChild(labelWrap);
         row.appendChild(selectWrap);
@@ -177,6 +191,14 @@ function createProgramTable(){
     }
 }
 
+function isCheckboxChecked(index) {
+    const checkbox = document.getElementById('checkbox-' + index);
+    return checkbox.checked;
+}
+
+
+
+
 async function startProgram(num, firstTime){
     if(firstTime){
         readGlobal = 1;
@@ -186,7 +208,12 @@ async function startProgram(num, firstTime){
     while(num < 17){
         let option = document.getElementById("select-" + num).value;
         let argument = document.getElementById("argument-" + num).value;
-        
+
+        const isChecked = isCheckboxChecked(num);
+        if(isChecked){
+            break;
+        }
+
         processorMessage(option, argument);
         switch(option){
             case "":
@@ -201,6 +228,7 @@ async function startProgram(num, firstTime){
         }
         await sleep(1000);
         useFunction(option, argument);
+       
         num++;
     }
 }
@@ -253,8 +281,7 @@ function store(argument){
 
 function add(argument){
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
-    value += parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
-
+    value += parseFloat(document.getElementById("input-" + argument).value) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
 }
 
