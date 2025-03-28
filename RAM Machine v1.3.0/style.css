@@ -20,6 +20,25 @@ input[type="number"] {
   text-align: center; 
 }
 
+input[type="checkbox"]{
+  display: none;
+}
+
+.checkbox-circle{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + .checkbox-circle {
+  background-color: red;
+  border: 2px solid red;
+}
+
 header{
   display: flex;
   justify-content: space-between;
