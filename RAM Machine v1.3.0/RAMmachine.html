@@ -50,7 +50,7 @@
         </div>
 
         <div class="readTable-div">
-            <button class="processorTable-btn"><img class="btn-image" src="img/arrowLeft.png" onclick="scrollHori(-16 * window.innerHeight / 100, 'read')"></button>
+            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowLeft.png"></button>
             <div class="readTable-wrapper" id="readTable-scroll">
                 <table id="readTable" class="readTable">
                     <tr id="readTable-id"></tr>
@@ -58,7 +58,7 @@
                     <script>createReadTable();</script>
                 </table>
             </div>
-            <button class="processorTable-btn"><img class="btn-image" src="img/arrowRight.png" onclick="scrollHori(16 * window.innerHeight / 100, 'read')"></button>
+            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowRight.png"></button>
         </div>
     </header>
 
@@ -83,6 +83,7 @@
         <h4 class="programTable-title"><b>PROGRAM</b></h4>
         <table id="programTable">
             <tr>
+                <th></th>
                 <th>NL</th>
                 <th>Etykieta</th>
                 <th>Instrukcja</th>
@@ -96,7 +97,7 @@
 
     <footer>
         <div class="writeTable-div">
-            <button class="processorTable-btn"><img class="btn-image" src="img/arrowLeft.png" onclick="scrollHori(-16 * window.innerHeight / 100, 'write')"></button>
+            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowLeft.png"></button>
             <div class="writeTable-wrapper" id="writeTable-scroll">
                 <table id="writeTable" class="writeTable">
                     <tr id="writeTable-id"></tr>
@@ -104,7 +105,7 @@
                     <script>createWriteTable();</script>
                 </table>
             </div>
-            <button class="processorTable-btn"><img class="btn-image" src="img/arrowRight.png" onclick="scrollHori(16 * window.innerHeight / 100, 'write')"></button>
+            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowRight.png"></button>
         </div>
     </footer>
 </body>
