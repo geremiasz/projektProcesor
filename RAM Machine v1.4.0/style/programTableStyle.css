@@ -1,0 +1,9 @@
+.programTable-div{
+    width: 100vh;
+    height: 65vh;
+    float: right;
+    overflow: auto;
+    margin-top: 4vh;
+    text-align: center;
+    background-color: #3f84a3;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/memoryTableStyle.css">
+    <link rel="stylesheet" href="style/readTableStyle.css">
+    <link rel="stylesheet" href="style/processorTableStyle.css">
+    <link rel="stylesheet" href="style/programTableStyle.css">
+    <link rel="stylesheet" href="style/writeTableStyle.css">
+    <script src="script.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar bg-dark border-bottom border-body d-flex justify-content-center" data-bs-theme="dark">
+        <div class="btn-group ">
+            <button class="btn btn-primary">
+                <i class="fas fa-save p-1"></i> Zapisz
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-folder-open p-1"></i> Wczytaj
+            </button>
+            <button  class="btn btn-success" id="startProgram">
+                <i class="fas fa-play p-1"></i> Uruchom
+            </button>
+            <button class="btn btn-danger">
+                <i class="fas fa-stop p-1"></i> Zatrzymaj
+            </button>
+            <button class="btn btn-info">
+                <i class="fas fa-step-forward p-1"></i> Po jednym
+            </button>
+        </div>
+    </nav>
+    <header>
+        <div class="processorTable-div">
+            <h4 class="processorTable-title"><b>PROCESOR</b></h4>
+            <label for="i1" class="processorTable-label">Instrukcja:</label>
+            <input type="text" class="processorTable-input" name="i1" id="instructionInput" disabled>
+            <label for="i2" class="processorTable-label">Argument:</label>
+            <input type="text" class="processorTable-input" name="i2" id="argumentInput" disabled>
+        </div>
+
+        <div class="readTable-div">
+            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowLeft.png"></button>
+            <div class="readTable-wrapper" id="readTable-scroll">
+                <table id="readTable" class="readTable">
+                    <tr id="readTable-id"></tr>
+                    <tr id="readTable-input"></tr>
+                    <script>createReadTable();</script>
+                </table>
+            </div>
+            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowRight.png"></button>
+        </div>
+    </header>
+
+    <main>
+    <div class="memoryTable-div">
+        <h4 class="memoryTable-title"><b>PAMIĘĆ</b></h4>
+        <table>
+            <tr class="memoryTable-top">
+                <th style="width: 7vh;">Adres</th>
+                <th style="width: 13vh;">Wartość</th>
+            </tr>
+        </table>
+        <div class="memoryTable-wrapper" id="memoryTable-scroll">
+            <table id="memoryTable" class="memoryTable">
+                <script>createMemoryTable();</script>
+            </table>
+        </div>
+        <button class="memoryTable-btn side-btn" style="border-right: none;" onclick="scrollVert(28)"><img class="btn-image" src="img/arrowDown.png"></button><button class="memoryTable-btn main-btn" onclick="toAddress()">Pokaż adres...</button><button class="memoryTable-btn side-btn" style="border-left: none;" onclick="scrollVert(-28)"><img class="btn-image" src="img/arrowUp.png"></button>
+    </div>
+
+    <div class="programTable-div">
+        <h4 class="programTable-title"><b>PROGRAM</b></h4>
+        <table id="programTable">
+            <tr>
+                <th></th>
+                <th>NL</th>
+                <th>Etykieta</th>
+                <th>Instrukcja</th>
+                <th>Argument</th>
+                <th>Komentarz</th>
+            </tr>
+            <script>createProgramTable(1, 2);</script>
+        </table>
+    </div>
+    </main>
+
+    <footer>
+        <div class="writeTable-div">
+            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowLeft.png"></button>
+            <div class="writeTable-wrapper" id="writeTable-scroll">
+                <table id="writeTable" class="writeTable">
+                    <tr id="writeTable-id"></tr>
+                    <tr id="writeTable-input"></tr>
+                    <script>createWriteTable();</script>
+                </table>
+            </div>
+            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowRight.png"></button>
+        </div>
+    </footer>
+</body>
+</html>
