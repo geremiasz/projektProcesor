@@ -129,6 +129,36 @@ function scrollHori(px, name){
     div.scrollLeft += px;
 }
 
+function showNextArrow(whichTable){
+    if(writeGlobal !== 99){
+        if(whichTable == 'write'){
+            const currentArrow = document.getElementById("arrow-Write-" + writeGlobal);
+            const nextArrow = document.getElementById("arrow-Write-" + (writeGlobal + 1));
+            currentArrow.style.visibility = 'hidden';
+            nextArrow.style.visibility = 'visible';
+        }else if(whichTable == 'read'){
+            const currentArrow = document.getElementById("arrow-Read-" + writeGlobal);
+            const nextArrow = document.getElementById("arrow-Read-" + (writeGlobal + 1));
+            currentArrow.style.visibility = 'hidden';
+            nextArrow.style.visibility = 'visible';
+        }
+    }
+}
+
+function resetArrows(){
+    for(let i = 1; i < 100; i++){
+        const arrowWrite = document.getElementById("arrow-Write-" + i);
+        const arrowRead = document.getElementById("arrow-Read-" + i);
+        if(i==1){
+            arrowWrite.style.visibility = 'visible';
+            arrowRead.style.visibility = 'visible';
+        }else{
+            arrowWrite.style.visibility = 'hidden';
+            arrowRead.style.visibility = 'hidden';
+        }
+    }
+}
+
 function toAddress(){
     let address = prompt("Wpisz adres komórki (max. 80)");
 
