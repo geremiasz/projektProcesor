@@ -124,9 +124,20 @@ function scrollVert(px) {
     }
 }
 
-function scrollHori(px, name){
-    const div = document.getElementById(name + 'Table-scroll');
-    div.scrollLeft += px;
+function scrollHoriNext(table) {
+    let input = "";
+    if(table == 'read'){
+        input = "input";
+    }else if(table == 'write'){
+        input = "output"
+    }
+    if (firstInput < 95) {
+        const element = document.getElementById(input + "-" + (firstInput + 1));
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        }
+        firstInput++;
+    }
 }
 
 function showNextArrow(whichTable){
