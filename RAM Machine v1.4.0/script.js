@@ -64,8 +64,17 @@ function createReadTable(){
         input.type = 'number';
         input.id = "input-" + i;
         input.className = "readTable-input";
- 
+
+         const upArrow = document.createElement('i');
+        upArrow.className = "fas fa-arrow-up arrow-icon";
+        upArrow.id = "arrow-Read-" + i;
+        upArrow.style.visibility = 'hidden';
+        if(i == 1){
+            upArrow.style.visibility = 'visible';
+        }
+        
         inputCell.appendChild(input);
+        inputCell.appendChild(upArrow);
         const table = document.getElementById('readTable-input');
         table.appendChild(inputCell);
     }
@@ -91,7 +100,16 @@ function createWriteTable(){
         input.id = "output-" + i;
         input.className = "writeTable-input";
         input.disabled = true;
- 
+
+        const downArrow = document.createElement('i');
+        downArrow.className = "fas fa-arrow-down arrow-icon";
+        downArrow.id = "arrow-Write-" + i;
+        downArrow.style.visibility = 'hidden';
+        if(i == 1){
+            downArrow.style.visibility = 'visible';
+        }
+
+        inputCell.appendChild(downArrow);
         inputCell.appendChild(input);
         const table = document.getElementById('writeTable-input');
         table.appendChild(inputCell);
