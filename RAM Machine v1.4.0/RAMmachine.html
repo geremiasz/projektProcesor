@@ -51,7 +51,7 @@
         </div>
 
         <div class="readTable-div">
-            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowLeft.png"></button>
+            <button class="processorTable-btn" onclick="scrollHoriLast('read')"><img class="btn-image" src="img/arrowLeft.png"></button>
             <div class="readTable-wrapper" id="readTable-scroll">
                 <table id="readTable" class="readTable">
                     <tr id="readTable-id"></tr>
@@ -59,7 +59,7 @@
                     <script>createReadTable();</script>
                 </table>
             </div>
-            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'read')"><img class="btn-image" src="img/arrowRight.png"></button>
+            <button class="processorTable-btn" onclick="scrollHoriNext('read')"><img class="btn-image" src="img/arrowRight.png"></button>
         </div>
     </header>
 
@@ -98,7 +98,7 @@
 
     <footer>
         <div class="writeTable-div">
-            <button class="processorTable-btn" onclick="scrollHori(-16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowLeft.png"></button>
+            <button class="processorTable-btn" onclick="scrollHoriLast('write')"><img class="btn-image" src="img/arrowLeft.png"></button>
             <div class="writeTable-wrapper" id="writeTable-scroll">
                 <table id="writeTable" class="writeTable">
                     <tr id="writeTable-id"></tr>
@@ -106,7 +106,7 @@
                     <script>createWriteTable();</script>
                 </table>
             </div>
-            <button class="processorTable-btn" onclick="scrollHori(16 * window.innerHeight / 100, 'write')"><img class="btn-image" src="img/arrowRight.png"></button>
+            <button class="processorTable-btn" onclick="scrollHoriNext('write')"><img class="btn-image" src="img/arrowRight.png"></button>
         </div>
     </footer>
 </body>
