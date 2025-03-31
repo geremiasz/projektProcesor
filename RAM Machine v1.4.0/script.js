@@ -259,6 +259,7 @@ function addColumn() {
 }
 
 async function startProgram(num, firstTime){
+    resetArrows();
     if(firstTime){
         readGlobal = 1;
         writeGlobal = 1;
@@ -366,12 +367,14 @@ function div(argument){
 function read(argument){
     let value = document.getElementById("input-" + readGlobal).value;
     document.getElementById("memoryTable-row-" + argument).textContent = value;
+    showNextArrow('read');
     readGlobal++;
 }
 
 function write(argument){
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
     document.getElementById("output-" + writeGlobal).value = value;
+    showNextArrow('write');
     writeGlobal++;
 }
 
