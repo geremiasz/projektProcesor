@@ -16,6 +16,7 @@
     vertical-align: auto;
     border: .3vh solid black;
     background-color: #57b8e6;
+    height: 100%;
   }
   
   .writeTable-wrapper{
