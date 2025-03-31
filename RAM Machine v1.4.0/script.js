@@ -1,6 +1,7 @@
 let readGlobal = 1;
 let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
+let firstInput = 1 // input do scrollHori
 
 // EVENTY WYKONYWANE PO ZAŁADOWANIU SIĘ APLIKACJI
 window.addEventListener("load", (event) => {
@@ -137,6 +138,22 @@ function scrollHoriNext(table) {
             element.scrollIntoView({ behavior: 'smooth', inline: 'start' });
         }
         firstInput++;
+    }
+}
+
+function scrollHoriLast(table) {
+    let input = "";
+    if(table == 'read'){
+        input = "input";
+    }else if(table == 'write'){
+        input = "output"
+    }
+    if (firstInput > 1) {
+        const element = document.getElementById(input + "-" + (firstInput - 1));
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+        }
+        firstInput--;
     }
 }
 
