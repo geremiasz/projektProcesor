@@ -473,3 +473,13 @@ function resetTable(){
         if(i > 0){document.getElementById("output-" + i).value = "&nbsp;";}
     }
 }
+
+function download(content, name){
+    const blob = new Blob([content], { type: 'text/plain' }); //pobieranie pliku
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = name+ '.txt';
+    document.body.appendChild(link);
+    link.click(); 
+    document.body.removeChild(link); 
+}
