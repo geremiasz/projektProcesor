@@ -11,6 +11,43 @@ window.addEventListener("load", (event) => {
     })
 });
 
+// Sprawdzanie czy plik został wczytany i funlcja do wczytywania pliku
+document.addEventListener('DOMContentLoaded', function() {
+    function loadFile(event) {
+        var modal = document.getElementById('closeButton');
+        modal.click();
+        const file = event.target.files[0];
+        if (file && file.type === "text/plain") {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n'); // Dzielenie na linie
+                const firstLine = lines[0]; // Podział na linie i pobranie pierwszej linii
+                if (firstLine.trim() === 'Tasma_wejsciowa') { // Użycie trim() aby usunąć białe znaki
+                    for(let i = 1; i< (lines.length); i++){ 
+                        const input = document.getElementById("input-" + i);
+                        const line = lines[i];
+                        if(line == '?'){
+                            input.value = '';
+                        }else{
+                            input.value = line;
+                        }
+                    }
+                } else {
+                    alert("Możesz wczytywać tylko pliki do taśmy wejściowej")
+                }
+            };
+            
+            reader.readAsText(file);
+        } else {
+            alert("Proszę wybrać plik tekstowy (.txt)");
+        }
+    }
+
+    document.getElementById('fileInput').addEventListener('change', loadFile);
+});
+
 const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
