@@ -483,3 +483,32 @@ function download(content, name){
     link.click(); 
     document.body.removeChild(link); 
 }
+
+function save(table) {
+    if (table === 'pamiec') {
+        let ilosc = prompt('Podaj ilość adresów: ');
+        let content = '';
+        let name = 'Pamiec_maszyny'
+
+        for (let i = 0; i <= ilosc; i++) { 
+            const actualLabel = document.getElementById("memoryTable-row-" + i);
+            if (actualLabel) {
+                content += "[ "+ i +"] " + actualLabel.innerText + '\n'; 
+            }
+        }
+
+        download(content, name);
+    }else if(table === 'wejscie'){
+        id = 'input-';
+        name = 'Tasma_wejsciowa';
+        saveHori(id, name);
+    }else if(table === 'wyjscie'){
+        id = 'output-';
+        name = 'Tasma_wyjsciowa';
+        saveHori(id, name);
+    }else if(table === 'raport'){
+        saveRaport();
+    }
+}
+
+
