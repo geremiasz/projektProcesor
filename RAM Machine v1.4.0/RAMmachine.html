@@ -89,36 +89,52 @@
                 </div>
             </div>
         </div>
-    <div class="memoryTable-div">
-        <h4 class="memoryTable-title"><b>PAMIĘĆ</b></h4>
-        <table>
-            <tr class="memoryTable-top">
-                <th style="width: 7vh;">Adres</th>
-                <th style="width: 13vh;">Wartość</th>
-            </tr>
-        </table>
-        <div class="memoryTable-wrapper" id="memoryTable-scroll">
-            <table id="memoryTable" class="memoryTable">
-                <script>createMemoryTable();</script>
+
+         <!-- Modal do wczytywania -->
+        <div class="modal fade" id="loadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Wczytaj Plik Taśmy wejsciowej</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeButton"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input class="form-control" type="file" id="fileInput" accept=".txt">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="memoryTable-div">
+            <h4 class="memoryTable-title"><b>PAMIĘĆ</b></h4>
+            <table>
+                <tr class="memoryTable-top">
+                    <th style="width: 7vh;">Adres</th>
+                    <th style="width: 13vh;">Wartość</th>
+                </tr>
+            </table>
+            <div class="memoryTable-wrapper" id="memoryTable-scroll">
+                <table id="memoryTable" class="memoryTable">
+                    <script>createMemoryTable();</script>
+                </table>
+            </div>
+            <button class="memoryTable-btn side-btn" style="border-right: none;" onclick="scrollVert(28)"><img class="btn-image" src="img/arrowDown.png"></button><button class="memoryTable-btn main-btn" onclick="toAddress()">Pokaż adres...</button><button class="memoryTable-btn side-btn" style="border-left: none;" onclick="scrollVert(-28)"><img class="btn-image" src="img/arrowUp.png"></button>
+        </div>
+
+        <div class="programTable-div">
+            <h4 class="programTable-title"><b>PROGRAM</b></h4>
+            <table id="programTable">
+                <tr>
+                    <th></th>
+                    <th>NL</th>
+                    <th>Etykieta</th>
+                    <th>Instrukcja</th>
+                    <th>Argument</th>
+                    <th>Komentarz</th>
+                </tr>
+                <script>createProgramTable(1, 2);</script>
             </table>
         </div>
-        <button class="memoryTable-btn side-btn" style="border-right: none;" onclick="scrollVert(28)"><img class="btn-image" src="img/arrowDown.png"></button><button class="memoryTable-btn main-btn" onclick="toAddress()">Pokaż adres...</button><button class="memoryTable-btn side-btn" style="border-left: none;" onclick="scrollVert(-28)"><img class="btn-image" src="img/arrowUp.png"></button>
-    </div>
-
-    <div class="programTable-div">
-        <h4 class="programTable-title"><b>PROGRAM</b></h4>
-        <table id="programTable">
-            <tr>
-                <th></th>
-                <th>NL</th>
-                <th>Etykieta</th>
-                <th>Instrukcja</th>
-                <th>Argument</th>
-                <th>Komentarz</th>
-            </tr>
-            <script>createProgramTable(1, 2);</script>
-        </table>
-    </div>
     </main>
 
     <footer>
