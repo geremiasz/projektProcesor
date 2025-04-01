@@ -511,4 +511,30 @@ function save(table) {
     }
 }
 
+function saveHori(id, name){
+    let end = false
+    let i = 1;
+    let content = '';
+    if(name === 'Tasma_wejsciowa'){
+        content += 'Tasma_wejsciowa\n';
+    }
+    while(end == false){
+        const input = document.getElementById(id + i).value;
+        if(input == ''){
+           const check = document.getElementById(id + (i+=1)).value;
+           if(check == ''){
+                end = true;
+           }else{
+                content += "?\n" + check + "\n";
+           }
+        }else{
+            content += input + "\n";
+        }
+        i++;
+    }
+        download(content, name)
+}
 
+function saveRaport(){
+    alert("W trakcie budowy");
+}
