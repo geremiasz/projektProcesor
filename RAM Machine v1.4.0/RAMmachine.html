@@ -64,6 +64,31 @@
     </header>
 
     <main>
+          <!-- Modal do zapisywania -->
+        <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Co chcesz zapisać</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button type="button" class="btn btn-info" onclick="save('pamiec')">
+                            Aktualny stan pamięci maszyny,
+                        </button>
+                        <button type="button" class="btn btn-info" onclick="save('wejscie')">
+                            Stan taśmy wejściowej
+                        </button>
+                        <button type="button" class="btn btn-info" onclick="save('wyjscie')">
+                            Stan taśmy wyjściowej
+                        </button>
+                        <button type="button" class="btn btn-info" onclick="save('raport')">
+                            Raport złożoności programu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="memoryTable-div">
         <h4 class="memoryTable-title"><b>PAMIĘĆ</b></h4>
         <table>
