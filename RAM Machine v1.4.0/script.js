@@ -3,6 +3,19 @@ let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
 let firstInput = 1 // input do scrollHori
 
+//liczniki metod
+let Cadd = 0, 
+    Csub = 0, 
+    Cmult = 0, 
+    Cdiv = 0, 
+    Cload = 0, 
+    Cstore = 0, 
+    Cread = 0, 
+    Cwrite = 0, 
+    Cjump = 0, 
+    Cjgtz = 0, 
+    Cjzero = 0;
+
 // EVENTY WYKONYWANE PO ZAŁADOWANIU SIĘ APLIKACJI
 window.addEventListener("load", (event) => {
     console.log("page is fully loaded");
@@ -324,11 +337,23 @@ function addColumn() {
 }
 
 async function startProgram(num, firstTime){
-    resetArrows();
     if(firstTime){
         readGlobal = 1;
         writeGlobal = 1;
+         //resetowanie liczników
+        Cadd = 0, 
+        Csub = 0, 
+        Cmult = 0, 
+        Cdiv = 0, 
+        Cload = 0, 
+        Cstore = 0, 
+        Cread = 0, 
+        Cwrite = 0, 
+        Cjump = 0, 
+        Cjgtz = 0, 
+        Cjzero = 0;
         resetTable();
+        resetArrows();
     }
     while(num < currentRowIndex){
         let option = document.getElementById("select-" + num).value;
@@ -395,58 +420,85 @@ function processorMessage(option, argument){
 }
 
 function load(argument){
-    console.log("argument: " + argument);
+    let input = document.getElementById("load");
+    Cload += 1;
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
     document.getElementById("memoryTable-row-0").textContent = value;
+    input.value = Cload;
+
 }
 
 function store(argument){
+    let input = document.getElementById("store");
+    Cstore += 1;
     let value = document.getElementById("memoryTable-row-0").textContent;
     document.getElementById("memoryTable-row-" + argument).textContent = value;
+    input.value = Cstore;
 }
 
 function add(argument){
+    let input = document.getElementById("add");
+    Cadd += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value += parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
+    input.value = Cadd;
 }
 
 function sub(argument){
+    let input = document.getElementById("sub");
+    Csub += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value -= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
+    input.value = Csub;
 }
 
 function mult(argument){
+    let input = document.getElementById("mult");
+    Cmult += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value *= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
+    input.value = Cmult;
 }
 
 function div(argument){
+    let input = document.getElementById("div");
+    Cdiv += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value /= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
+    input.value = Cdiv;
 }
 
 function read(argument){
+    let input = document.getElementById("read");
+    Cread += 1;
     let value = document.getElementById("input-" + readGlobal).value;
     document.getElementById("memoryTable-row-" + argument).textContent = value;
     showNextArrow('read');
     readGlobal++;
+    input.value = Cread;
 }
 
 function write(argument){
+    let input = document.getElementById("write");
+    Cwrite += 1;
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
     document.getElementById("output-" + writeGlobal).value = value;
     showNextArrow('write');
     writeGlobal++;
+    input.value = Cwrite;
 }
 
 function jump(option, argument, currentID){
+    let input = document.getElementById(option);
     switch(option){
         case "jump":
             startProgram(argument, false);
+            Cjump += 1;
+            input.value = Cjump;
         break;
         case "jgtz":
             if(document.getElementById("memoryTable-row-0").textContent > 0){
@@ -455,6 +507,8 @@ function jump(option, argument, currentID){
             else{
                 jump("jump", currentID+1, 0);
             }
+            Cjgtz += 1;
+            input.value = Cjgtz;
         break;
         case "jzero":
             if(document.getElementById("memoryTable-row-0").textContent == 0){
@@ -463,6 +517,8 @@ function jump(option, argument, currentID){
             else{
                 jump("jump", currentID+1, 0);
             }
+            Cjzero += 1;
+            input.value = Cjzero;
         break;
     }
 }
