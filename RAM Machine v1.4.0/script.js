@@ -100,16 +100,17 @@ function createMemoryTable() {
 }
 
 function createReadTable(){
-    for(let i = 1; i < 100; i++){
+    const headerTable = document.getElementById('readTable-id');
+    const inputTable = document.getElementById('readTable-input');
+    const headerFragment = document.createDocumentFragment();
+    const inputFragment = document.createDocumentFragment();
+
+    for (let i = 1; i < 100; i++) {
         const cellNum = document.createElement('th');
         cellNum.textContent = i;
         cellNum.className = "readTable-cellNum";
+        headerFragment.appendChild(cellNum);
 
-        const table = document.getElementById('readTable-id');
-        table.appendChild(cellNum);
-    }
-
-    for(let i = 1; i < 100; i++){
         const inputCell = document.createElement('td');
         inputCell.id = "inputCell-" + i;
         inputCell.className = "readTable-cell";
@@ -119,19 +120,23 @@ function createReadTable(){
         input.id = "input-" + i;
         input.className = "readTable-input";
 
-         const upArrow = document.createElement('i');
+        const upArrow = document.createElement('i');
         upArrow.className = "fas fa-arrow-up arrow-icon";
         upArrow.id = "arrow-Read-" + i;
-        upArrow.style.visibility = 'hidden';
-        if(i == 1){
-            upArrow.style.visibility = 'visible';
-        }
         
+        if(i === 1){
+            upArrow.style.visibility = 'visible';
+        }else{
+            upArrow.style.visibility = 'hidden';
+        }
+
         inputCell.appendChild(input);
         inputCell.appendChild(upArrow);
-        const table = document.getElementById('readTable-input');
-        table.appendChild(inputCell);
+        inputFragment.appendChild(inputCell);
     }
+
+    headerTable.appendChild(headerFragment);
+    inputTable.appendChild(inputFragment);
 }
 
 function createWriteTable(){
