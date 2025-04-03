@@ -324,7 +324,7 @@ function createProgramTable(ilosc, numer) {
 
         row.addEventListener('keydown', function(event) { // dodanie eventu do wiersza
             if (event.key === 'Enter') {
-                addColumn();
+                createProgramTable(2, 3);
             }
         });
 
@@ -338,10 +338,6 @@ function createProgramTable(ilosc, numer) {
 function isCheckboxChecked(index) {
     const checkbox = document.getElementById('checkbox-' + index);
     return checkbox.checked;
-}
-
-function addColumn() {
-    createProgramTable(2, 3);
 }
 
 async function startProgram(num, firstTime){
