@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+.readTable-div{
+  width: 100vh;
+  height: 10vh;
+  justify-content: center;
+  float: right;
+  display: flex;
+}
+
+
+.readTable-wrapper{
+  text-align: center;
+  width: 80vh;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 .5vh;
+}
+
+.readTable-cell, .readTable-input {
+  width: 15vh;
+  padding: 0;
+  margin: 0;
+}
+
+.readTable-input{
+  width: 15vh;
+  margin: 0 .5vh;
+}
+
+.readTable-wrapper {
+  overflow-x: scroll; 
+  scrollbar-width: none;
+}
+
+.readTable-wrapper::-webkit-scrollbar {
+  display: none;
+}
