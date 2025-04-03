@@ -66,34 +66,37 @@ const sleep = (ms) => {
 }
 
 function createMemoryTable() {
+    const memoryTable = document.getElementById('memoryTable');
+    const fragment = document.createDocumentFragment();
+    
     for(let i = 0; i < 100; i++){
         const row = document.createElement('tr');
         row.id = "memoryRow-" + i;
 
         const rowAddress = document.createElement('td');
         rowAddress.textContent = i;
-        rowAddress.style.backgroundColor = "#3f84a3";
         rowAddress.className = "memoryTable-rowId";
-
+        
         const rowValue = document.createElement('td');
         rowValue.textContent = "?";
         rowValue.className = "memoryTable-valueRow"
         rowValue.id ="memoryTable-row-" + i;
 
-        if(i == 0){
+        if(i === 0){
             row.style.backgroundColor = "#cc8029";
             rowAddress.style.backgroundColor = "#cc8029";
         }
         else{
             row.style.backgroundColor = "#525252";
+            rowAddress.style.backgroundColor = "#3f84a3";
         }
 
         row.appendChild(rowAddress);
         row.appendChild(rowValue);
-
-        const memoryTable = document.getElementById('memoryTable');
-        memoryTable.appendChild(row);
+        fragment.appendChild(row);
     }
+    
+    memoryTable.appendChild(fragment);
 }
 
 function createReadTable(){
