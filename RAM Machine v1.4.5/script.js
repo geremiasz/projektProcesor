@@ -3,18 +3,21 @@ let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
 let firstInput = 1 // input do scrollHorizontal
 
-//liczniki metod
-let Cadd = 0, 
-    Csub = 0, 
-    Cmult = 0, 
-    Cdiv = 0, 
-    Cload = 0, 
-    Cstore = 0, 
-    Cread = 0, 
-    Cwrite = 0, 
-    Cjump = 0, 
-    Cjgtz = 0, 
-    Cjzero = 0;
+// liczniki funkcji
+const liczniki = {
+    add: 0,
+    sub: 0,
+    mult: 0,
+    div: 0,
+    load: 0,
+    store: 0,
+    read: 0,
+    write: 0,
+    jump: 0,
+    jgtz: 0,
+    jzero: 0
+};
+
 
 // EVENTY WYKONYWANE PO ZAŁADOWANIU SIĘ APLIKACJI
 window.addEventListener("load", (event) => {
@@ -66,47 +69,52 @@ const sleep = (ms) => {
 }
 
 function createMemoryTable() {
-    for(let i = 0; i < 100; i++){
+    const memoryTable = document.getElementById('memoryTable');
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < 100; i++) {
         const row = document.createElement('tr');
         row.id = "memoryRow-" + i;
 
         const rowAddress = document.createElement('td');
         rowAddress.textContent = i;
-        rowAddress.style.backgroundColor = "#3f84a3";
         rowAddress.className = "memoryTable-rowId";
 
         const rowValue = document.createElement('td');
         rowValue.textContent = "?";
-        rowValue.className = "memoryTable-valueRow"
-        rowValue.id ="memoryTable-row-" + i;
+        rowValue.className = "memoryTable-valueRow";
+        rowValue.id = "memoryTable-row-" + i;
 
-        if(i == 0){
+        if(i === 0){
             row.style.backgroundColor = "#cc8029";
             rowAddress.style.backgroundColor = "#cc8029";
-        }
-        else{
+
+        }else{
             row.style.backgroundColor = "#525252";
+            rowAddress.style.backgroundColor = "#3f84a3";
         }
 
         row.appendChild(rowAddress);
         row.appendChild(rowValue);
-
-        const memoryTable = document.getElementById('memoryTable');
-        memoryTable.appendChild(row);
+        fragment.appendChild(row);
     }
+
+    memoryTable.appendChild(fragment);
 }
 
-function createReadTable(){
-    for(let i = 1; i < 100; i++){
+
+function createReadTable() {
+    const headerTable = document.getElementById('readTable-id');
+    const inputTable = document.getElementById('readTable-input');
+    const headerFragment = document.createDocumentFragment();
+    const inputFragment = document.createDocumentFragment();
+
+    for (let i = 1; i < 100; i++) {
         const cellNum = document.createElement('th');
         cellNum.textContent = i;
         cellNum.className = "readTable-cellNum";
+        headerFragment.appendChild(cellNum);
 
-        const table = document.getElementById('readTable-id');
-        table.appendChild(cellNum);
-    }
-
-    for(let i = 1; i < 100; i++){
         const inputCell = document.createElement('td');
         inputCell.id = "inputCell-" + i;
         inputCell.className = "readTable-cell";
@@ -116,19 +124,23 @@ function createReadTable(){
         input.id = "input-" + i;
         input.className = "readTable-input";
 
-         const upArrow = document.createElement('i');
+        const upArrow = document.createElement('i');
         upArrow.className = "fas fa-arrow-up arrow-icon";
         upArrow.id = "arrow-Read-" + i;
-        upArrow.style.visibility = 'hidden';
-        if(i == 1){
+
+        if(i === 1){
             upArrow.style.visibility = 'visible';
+        }else{
+            upArrow.style.visibility = 'hidden';
         }
-        
+
         inputCell.appendChild(input);
         inputCell.appendChild(upArrow);
-        const table = document.getElementById('readTable-input');
-        table.appendChild(inputCell);
+        inputFragment.appendChild(inputCell);
     }
+
+    headerTable.appendChild(headerFragment);
+    inputTable.appendChild(inputFragment);
 }
 
 function createWriteTable(){
@@ -316,7 +328,7 @@ function createProgramTable(ilosc, numer) {
 
         row.addEventListener('keydown', function(event) { // dodanie eventu do wiersza
             if (event.key === 'Enter') {
-                addColumn();
+                createProgramTable(2, 3);
             }
         });
 
@@ -332,26 +344,16 @@ function isCheckboxChecked(index) {
     return checkbox.checked;
 }
 
-function addColumn() {
-    createProgramTable(2, 3);
-}
-
 async function startProgram(num, firstTime){
     if(firstTime){
         readGlobal = 1;
         writeGlobal = 1;
-         //resetowanie liczników
-        Cadd = 0, 
-        Csub = 0, 
-        Cmult = 0, 
-        Cdiv = 0, 
-        Cload = 0, 
-        Cstore = 0, 
-        Cread = 0, 
-        Cwrite = 0, 
-        Cjump = 0, 
-        Cjgtz = 0, 
-        Cjzero = 0;
+       //resetowanie liczników
+        for (let licznik in liczniki) {
+            if (liczniki.hasOwnProperty(licznik)) {
+                    liczniki[licznik] = 0; // Resetowanie licznika do zera
+                }
+        }
         resetTable();
         resetArrows();
     }
@@ -421,74 +423,66 @@ function processorMessage(option, argument){
 
 function load(argument){
     let input = document.getElementById("load");
-    Cload += 1;
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
     document.getElementById("memoryTable-row-0").textContent = value;
-    input.value = Cload;
-
+    input.value = ++liczniki.load;
 }
 
 function store(argument){
     let input = document.getElementById("store");
-    Cstore += 1;
     let value = document.getElementById("memoryTable-row-0").textContent;
     document.getElementById("memoryTable-row-" + argument).textContent = value;
-    input.value = Cstore;
+    input.value = ++liczniki.store;
 }
 
 function add(argument){
     let input = document.getElementById("add");
-    Cadd += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value += parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
-    input.value = Cadd;
+    input.value = ++liczniki.add;
 }
 
 function sub(argument){
     let input = document.getElementById("sub");
-    Csub += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value -= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
-    input.value = Csub;
+    input.value = ++liczniki.sub;
 }
 
 function mult(argument){
     let input = document.getElementById("mult");
-    Cmult += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value *= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
-    input.value = Cmult;
+    input.value = ++liczniki.mult;
 }
 
 function div(argument){
     let input = document.getElementById("div");
-    Cdiv += 1;
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value /= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
-    input.value = Cdiv;
+    input.value = ++liczniki.div;
 }
 
 function read(argument){
     let input = document.getElementById("read");
-    Cread += 1;
     let value = document.getElementById("input-" + readGlobal).value;
     document.getElementById("memoryTable-row-" + argument).textContent = value;
     showNextArrow('read');
     readGlobal++;
+    input.value = ++liczniki.read;
 }
 
 function write(argument){
     let input = document.getElementById("write");
-    Cwrite += 1;
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
     document.getElementById("output-" + writeGlobal).value = value;
     showNextArrow('write');
     writeGlobal++;
-    input.value = Cwrite;
+    input.value = ++liczniki.write;
 }
 
 function jump(option, argument, currentID){
@@ -496,8 +490,7 @@ function jump(option, argument, currentID){
     switch(option){
         case "jump":
             startProgram(argument, false);
-            Cjump += 1;
-            input.value = Cjump;
+            input.value = ++liczniki.jump;
         break;
         case "jgtz":
             if(document.getElementById("memoryTable-row-0").textContent > 0){
@@ -506,8 +499,7 @@ function jump(option, argument, currentID){
             else{
                 jump("jump", currentID+1, 0);
             }
-            Cjgtz += 1;
-            input.value = Cjgtz;
+            input.value = ++liczniki.jgtz;
         break;
         case "jzero":
             if(document.getElementById("memoryTable-row-0").textContent == 0){
@@ -516,8 +508,7 @@ function jump(option, argument, currentID){
             else{
                 jump("jump", currentID+1, 0);
             }
-            Cjzero += 1;
-            input.value = Cjzero;
+            input.value = ++liczniki.jzero;
         break;
     }
 }
