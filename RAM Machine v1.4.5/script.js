@@ -1,7 +1,10 @@
 let readGlobal = 1;
 let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
-let firstInput = 1 // input do scrollHorizontal
+const firstInputs = { //tablica inputów do skrolowania
+    read: 1,
+    write: 1
+};
 
 // liczniki funkcji
 const liczniki = {
@@ -194,12 +197,12 @@ function scrollHoriNext(table) {
     }else if(table == 'write'){
         input = "output"
     }
-    if (firstInput < 95) {
-        const element = document.getElementById(input + "-" + (firstInput + 1));
+    if (firstInputs[table] < 95) {
+        const element = document.getElementById(input + "-" + (firstInputs[table] + 1));
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         }
-        firstInput++;
+        firstInputs[table]++;
     }
 }
 
@@ -210,12 +213,12 @@ function scrollHoriLast(table) {
     }else if(table == 'write'){
         input = "output"
     }
-    if (firstInput > 1) {
-        const element = document.getElementById(input + "-" + (firstInput - 1));
+    if (firstInputs[table] > 1) {
+        const element = document.getElementById(input + "-" + (firstInputs[table] - 1));
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         }
-        firstInput--;
+        firstInputs[table]--;
     }
 }
 
