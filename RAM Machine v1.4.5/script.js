@@ -534,12 +534,17 @@ function download(content, name){
 }
 
 function save(table) {
-    if (table === 'pamiec') {
-        let ilosc = prompt('Podaj ilość adresów: ');
+     if (table === 'pamiec') {
+        var closeModal = document.getElementById("closeMemoryButton");
+        let start = document.getElementById("firstAddress").value;
+        let end = document.getElementById("lastAddress").value;
         let content = '';
         let name = 'Pamiec_maszyny'
-
-        for (let i = 0; i <= ilosc; i++) { 
+        if (isNaN(start) || isNaN(end) || start < 0 || end >= 100 || start > end) {
+            alert("Nieprawidłowe adresy. Upewnij się, że są to liczby w zakresie 0-99 i że początkowy adres jest mniejszy lub równy końcowemu.");
+            return; // Zakończ działanie funkcji, jeśli walidacja nie powiodła się
+        }
+        for (let i = start; i <= end; i++) { 
             const actualLabel = document.getElementById("memoryTable-row-" + i);
             if (actualLabel) {
                 content += "[ "+ i +"] " + actualLabel.innerText + '\n'; 
@@ -547,6 +552,7 @@ function save(table) {
         }
 
         download(content, name);
+        closeModal.click();
     }else if(table === 'wejscie'){
         id = 'input-';
         name = 'Tasma_wejsciowa';
