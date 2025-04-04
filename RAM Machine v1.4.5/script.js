@@ -230,8 +230,8 @@ function showNextArrow(whichTable){
             currentArrow.style.visibility = 'hidden';
             nextArrow.style.visibility = 'visible';
         }else if(whichTable == 'read'){
-            const currentArrow = document.getElementById("arrow-Read-" + writeGlobal);
-            const nextArrow = document.getElementById("arrow-Read-" + (writeGlobal + 1));
+            const currentArrow = document.getElementById("arrow-Read-" + readGlobal);
+            const nextArrow = document.getElementById("arrow-Read-" + (readGlobal + 1));
             currentArrow.style.visibility = 'hidden';
             nextArrow.style.visibility = 'visible';
         }
