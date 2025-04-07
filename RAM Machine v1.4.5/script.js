@@ -618,5 +618,25 @@ function saveHori(id, name){
 }
 
 function saveRaport(){
-    alert("W trakcie budowy");
+    let timeLogaritmicCost = document.getElementById("lCost").value
+    let timeUniformcCost = document.getElementById("uCost").value
+    let spaceLogaritmicReport = document.getElementById("SlCost").value
+    let spaceUniformReport = document.getElementById("SuCost").value
+    let name = "Raport"
+    let content = '';
+    content += "- Time Complexity Report\n";
+    content += "\tLogarithmic Cost: " + timeLogaritmicCost + "\n";
+    content += "\tUniform Cost: " + timeUniformcCost + "\n\n";
+    content += '- Space Complexity Report\n';
+    content += "\tLogarithmic Cost: " + spaceLogaritmicReport + "\n";
+    content += "\tUniform Cost: " + spaceUniformReport + "\n\n";
+    content += "- Executed Instructions Count\n";
+    for (const key in liczniki) {
+        if (liczniki.hasOwnProperty(key)) {
+            content += "\t" + `${key.toUpperCase()}: ${liczniki[key]}` + "\n";
+        }
+    }
+    download(content, name);
 }
+
+
