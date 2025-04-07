@@ -21,6 +21,22 @@ const liczniki = {
     jzero: 0
 };
 
+// Koszty dla instrukcji
+const koszty = {
+    LOAD: (a) => t(a),
+    STORE: (value, x) => lcost(value) + lcost(x),
+    ADD: (value, a) => lcost(value) + t(a),
+    SUB: (value, a) => lcost(value) + t(a),
+    MULT: (value, a) => lcost(value) + t(a),
+    DIV: (value, a) => lcost(value) + t(a),
+    READ: (y, x) => lcost(y) + lcost(x),
+    WRITE: (a) => t(a),
+    JUMP: (e) => 1,
+    JGTZ: (e) => lcost(e),
+    JZERO: (e) => lcost(e),
+    HALT: () => 1
+};
+
 
 // EVENTY WYKONYWANE PO ZAŁADOWANIU SIĘ APLIKACJI
 window.addEventListener("load", (event) => {
@@ -520,6 +536,17 @@ function resetTable(){
     for(let i = 0; i < 100; i++){
         document.getElementById("memoryTable-row-" + i).textContent = "?";
         if(i > 0){document.getElementById("output-" + i).value = "&nbsp;";}
+    }
+}
+
+// Funkcja obliczająca koszt logarytmiczny
+function lcost(x) {
+    if (x == 0) {
+        return 1; 
+    } else if (x < 0) {
+        return 0; 
+    } else {
+        return Math.floor(Math.log10(Math.abs(x))) + 1; 
     }
 }
 
