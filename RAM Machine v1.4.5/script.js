@@ -59,6 +59,8 @@ window.addEventListener("load", (event) => {
     
     document.querySelector('#resumeProgram').addEventListener('click', function() {
         document.querySelector('#stopProgram').style.display = "block";
+        const resumeProgram = document.getElementById("resumeProgram"); // Przycisk do wznowienia programu
+        resumeProgram.style.display = "none";
         stopProgram = false;
         startProgram(currentNum, false); // Wznów program od currentNum
     });
