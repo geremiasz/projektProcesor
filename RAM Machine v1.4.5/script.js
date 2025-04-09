@@ -1,6 +1,7 @@
 let readGlobal = 1;
 let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
+let currentNum = 1; // aktualny numer programu
 const firstInputs = { //tablica inputów do skrolowania
     read: 1,
     write: 1
@@ -42,8 +43,25 @@ const koszty = {
 window.addEventListener("load", (event) => {
     console.log("page is fully loaded");
     document.querySelector('#startProgram').addEventListener('click', () => {
-        startProgram(1, true)
-    })
+        startProgram(currentNum, true); // Rozpocznij program od currentNum
+        const resumeProgram = document.getElementById("resumeProgram"); // Przycisk do wznowienia programu
+        resumeProgram.style.display = "none";
+        document.querySelector('#stopProgram').style.display = "block";
+        stopProgram = false;
+    });
+    
+    document.querySelector('#stopProgram').addEventListener('click', function() {
+        const resumeProgram = document.getElementById("resumeProgram"); // Przycisk do wznowienia programu
+        resumeProgram.style.display = "block";
+        document.querySelector('#stopProgram').style.display = "none";
+        stopProgram = true;
+    });
+    
+    document.querySelector('#resumeProgram').addEventListener('click', function() {
+        document.querySelector('#stopProgram').style.display = "block";
+        stopProgram = false;
+        startProgram(currentNum, false); // Wznów program od currentNum
+    });
 });
 
 // Sprawdzanie czy plik został wczytany i funlcja do wczytywania pliku
@@ -376,17 +394,19 @@ async function startProgram(num, firstTime){
         resetTable();
         resetArrows();
     }
-    while(num < currentRowIndex){
+   while (num < currentRowIndex) {
         let option = document.getElementById("select-" + num).value;
         let argument = document.getElementById("argument-" + num).value;
-
         const isChecked = isCheckboxChecked(num);
-        if(isChecked){
+        
+        if (stopProgram || isChecked) {
+            currentNum = num; // Zapisz aktualny numer przed zatrzymaniem
             break;
         }
-
+        
         processorMessage(option, argument);
-        switch(option){
+        
+        switch (option) {
             case "":
             case "halt":
                 return;
@@ -397,9 +417,9 @@ async function startProgram(num, firstTime){
                 jump(option, argument, num);
                 return;  
         }
+        
         await sleep(1000);
         useFunction(option, argument);
-       
         num++;
     }
 }
