@@ -65,6 +65,10 @@
                 margin-top: 1rem;
             }
         }
+        
+        #resumeProgram{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -81,8 +85,11 @@
                 <button class="btn btn-success control-btn" id="startProgram">
                     <i class="fas fa-play me-1"></i> Uruchom
                 </button>
-                <button class="btn btn-danger control-btn">
+                <button class="btn btn-danger control-btn" id="stopProgram">
                     <i class="fas fa-stop me-1"></i> Zatrzymaj
+                </button>
+                <button class="btn btn-success control-btn" id="resumeProgram">
+                    <i class="fas fa-play me-1"></i> Wznów
                 </button>
                 <button class="btn btn-info control-btn">
                     <i class="fas fa-step-forward me-1"></i> Krok
