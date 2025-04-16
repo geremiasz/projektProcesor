@@ -11,5 +11,6 @@
 
 **Jacek M:**
   - Pomoc w JavaScript głównego pola.
-  - Style CSS projektu.
+  - Style CSS projektu. Cały interfejs.
   - Przyciski interfejsu + JavaScript przycisków.
+  - Część raportu.
