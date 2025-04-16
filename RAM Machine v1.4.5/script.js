@@ -373,9 +373,11 @@ function createProgramTable(ilosc, numer) {
             }
             if (event.key === 'Escape'){
                 var table = document.querySelector('#programTable');
+                if(table.lastElementChild.id != 'programRow-1'){
                 var lastRow = table && table.lastElementChild;
                 lastRow && lastRow.remove();
                 currentRowIndex--;
+                }
             }
         });
 
