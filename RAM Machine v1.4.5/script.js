@@ -671,4 +671,18 @@ function saveRaport(){
     download(content, name);
 }
 
+function saveProgram() {
+    let content = "";
+    let name = "Program";
+    for (let i = 1; i <= currentRowIndex; i++) {
+        let etykieta = document.getElementById("etykieta-" + i);
+        let instruction = document.getElementById("select-" + i);
+        let argument = document.getElementById("argument-" + i);
+        let comment = document.getElementById("comment-" + i);
+        if (etykieta && instruction && argument && comment) {
+            content += "Etykieta: " + etykieta.value + " Instrukcja: " + instruction.value + " Argument: " + argument.value + " Comment: " + comment.value + "\n";
+        }
+    }
+    download(content, name);
+}
 
