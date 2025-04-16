@@ -3,13 +3,13 @@
   - JavaScript głównego pola.
   - Tabela odczytu i tabela zapisu.
   - Część funkcji i raportu procesora.
-  - Zapisywanie i wczytywanie z/do pliku.
-
+  - Pamięć procesora.
+  
 **Michał Kk:**
   - Łączenie nowych zmian w wersje.
   - JavaScript głównego pola.
   - Optymalizacja skryptów.
-  - Pamięć procesora.
+  - Zapisywanie i wczytywanie z/do pliku.
 
 **Jacek M:**
   - Pomoc w JavaScript głównego pola.
