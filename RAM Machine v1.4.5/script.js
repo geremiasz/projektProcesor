@@ -371,6 +371,12 @@ function createProgramTable(ilosc, numer) {
             if (event.key === 'Enter') {
                 createProgramTable(2, 3);
             }
+            if (event.key === 'Escape'){
+                var table = document.querySelector('#programTable');
+                var lastRow = table && table.lastElementChild;
+                lastRow && lastRow.remove();
+                currentRowIndex--;
+            }
         });
 
         const table = document.getElementById('programTable');
