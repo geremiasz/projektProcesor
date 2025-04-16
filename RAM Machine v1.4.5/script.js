@@ -103,6 +103,50 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('fileInput').addEventListener('change', loadFile);
 });
 
+// Wczytywanie Programu
+document.addEventListener('DOMContentLoaded', function () {
+    function loadProgramFile(event) {
+        var modal = document.getElementById('closeButton');
+        modal.click();
+        const file = event.target.files[0];
+
+        if (file && file.type === "text/plain") {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n'); // Dzielenie na linie
+                console.log(lines.length);
+                let lineIndex = 1; // Indeks linii do dodawania nowych wierszy
+                    for(let i = 0; i< (lines.length-1); i+= 4){ 
+                        const row = document.getElementById("programRow-" + lineIndex);
+                        const etykieta = document.getElementById("etykieta-" + lineIndex);
+                        const instruction = document.getElementById("select-" + lineIndex);
+                        const argument = document.getElementById("argument-" + lineIndex);
+                        const comment = document.getElementById("comment-" + lineIndex);
+                        etykieta.value = lines[i] || " ";
+                        instruction.value = lines[i+1] || " ";
+                        argument.value = lines[i+2] || " ";
+                        comment.value = lines[i+3] || " ";
+                        row.dispatchEvent(new KeyboardEvent("keydown", { // Dodanie nowego wiersza
+                            bubbles: true,
+                            cancelable: true,
+                            key: "Enter",
+                            code: "Enter",
+                            keyCode: 13
+                        }));
+                        lineIndex++;
+                    }
+            };
+            
+            reader.readAsText(file);
+        } else {
+            alert("Proszę wybrać plik tekstowy (.txt)");
+        }
+    }
+
+    document.getElementById('fileProgramInput').addEventListener('change', loadProgramFile);
+});
+
 const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -322,6 +366,7 @@ function createProgramTable(ilosc, numer) {
 
         const label = document.createElement('input');
         label.type = 'text';
+        label.id = 'etykieta-' + currentRowIndex;
 
         const labelWrap = document.createElement('td');
         labelWrap.appendChild(label);
@@ -354,6 +399,7 @@ function createProgramTable(ilosc, numer) {
 
         const comment = document.createElement('input');
         comment.type = 'text';
+        comment.id = 'comment-' + currentRowIndex;
         const commentWrap = document.createElement('td');
         commentWrap.appendChild(comment);
 
@@ -622,6 +668,8 @@ function save(table) {
         saveHori(id, name);
     }else if(table === 'raport'){
         saveRaport();
+    }else if(table === 'program'){
+        saveProgram();
     }
 }
 
@@ -671,18 +719,20 @@ function saveRaport(){
     download(content, name);
 }
 
+
 function saveProgram() {
     let content = "";
     let name = "Program";
-    for (let i = 1; i <= currentRowIndex; i++) {
+    for (let i = 1; i < currentRowIndex; i++) {
         let etykieta = document.getElementById("etykieta-" + i);
         let instruction = document.getElementById("select-" + i);
         let argument = document.getElementById("argument-" + i);
         let comment = document.getElementById("comment-" + i);
         if (etykieta && instruction && argument && comment) {
-            content += "Etykieta: " + etykieta.value + " Instrukcja: " + instruction.value + " Argument: " + argument.value + " Comment: " + comment.value + "\n";
+            content += etykieta.value + "\n" + instruction.value + "\n" + argument.value + "\n" + comment.value + "\n";
         }
     }
     download(content, name);
 }
+
 
