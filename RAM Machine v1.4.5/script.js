@@ -64,6 +64,11 @@ window.addEventListener("load", (event) => {
         stopProgram = false;
         startProgram(currentNum, false); // Wznów program od currentNum
     });
+
+    document.querySelector('#step').addEventListener('click', function() { //funkcja kroku
+        currentNum++;
+        startProgram(currentNum, false);
+    });
 });
 
 // Sprawdzanie czy plik został wczytany i funlcja do wczytywania pliku
