@@ -1,3 +1,7 @@
+/* ---------------------------------------------------------------------------
+Copyright to The Independent and Democratic People of Geremiasz Studio 2025
+--------------------------------------------------------------------------- */
+
 let readGlobal = 1;
 let writeGlobal = 1;
 let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
@@ -419,10 +423,10 @@ function createProgramTable(ilosc, numer) {
         row.appendChild(commentWrap);
 
         row.addEventListener('keydown', function(event) { // dodanie eventu do wiersza
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' || event.key === 'ArrowUp') {
                 createProgramTable(2, 3);
             }
-            if (event.key === 'Escape'){
+            if (event.key === 'Escape' || event.key === 'ArrowDown'){
                 var table = document.querySelector('#programTable');
                 if(table.lastElementChild.id != 'programRow-1'){
                 var lastRow = table && table.lastElementChild;
