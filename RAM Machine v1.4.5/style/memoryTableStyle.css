@@ -3,3 +3,11 @@
     height: 100%;
     overflow: hidden;
 }  
+
+.memoryTable td {
+    text-align: left;
+}
+
+.memoryTable tr:nth-child(even) {
+    background-color: rgb(34, 34, 34);
+}
