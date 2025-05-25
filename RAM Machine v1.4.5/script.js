@@ -553,6 +553,8 @@ function useFunction(option, argument){
 function processorMessage(option, argument){
     document.getElementById("instructionInput").value = option;
     document.getElementById("argumentInput").value = argument;
+    setTimeout(() => flashElement('argumentInput'), 100);
+    setTimeout(() => flashElement('instructionInput'), 100);
 }
 
 function load(argument){
@@ -772,4 +774,29 @@ function saveProgram() {
     download(content, name);
 }
 
+// Animacja migania
+function flashElement(elementId) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
 
+    element.classList.remove("flash");
+
+    void element.offsetWidth;
+
+    element.classList.remove("bg-dark");
+    element.classList.remove("text-light");
+    element.classList.remove("text-light");
+    element.classList.add("flash");
+
+    setTimeout(() => {
+        element.classList.remove("flash");
+        element.classList.add("bg-dark");
+        element.classList.add("text-light");
+        element.classList.remove("text-dark");
+    }, 500);
+}
+
+/* przydatne ID
+instructionInput
+argumentInput
+*/
