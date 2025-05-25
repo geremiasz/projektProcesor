@@ -795,8 +795,3 @@ function flashElement(elementId) {
         element.classList.remove("text-dark");
     }, 500);
 }
-
-/* przydatne ID
-instructionInput
-argumentInput
-*/
