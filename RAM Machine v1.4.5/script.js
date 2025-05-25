@@ -8,7 +8,8 @@ let currentRowIndex = 1; // aktualny indeks wiersza createProgramTable
 let currentNum = 1; // aktualny numer programu
 const firstInputs = { //tablica inputów do skrolowania
     read: 1,
-    write: 1
+    write: 1,
+    memory: 10
 };
 
 // liczniki funkcji
@@ -273,11 +274,35 @@ function createWriteTable(){
     }
 }
 
-function scrollVert(px) {
-    const div = document.getElementById('memoryTable-scroll');
-    div.scrollTop += px;
-    if(div.scrollTop > 2240){
-        div.scrollTop = 2240;
+function scrollVert(direction) {
+    if (direction === 'up') {
+        if (firstInputs.memory > 0) { // Upewnij się, że nie przekroczymy dolnej granicy
+            firstInputs.memory-= 10;
+            if (firstInputs.memory <= 0) {
+                firstInputs.memory = 0; // Ustaw na 0, jeśli przekroczono dolną granicę
+                const element = document.getElementById("memoryTable-head");
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                }
+            }else{
+                const element = document.getElementById("memoryRow-" + (firstInputs.memory - 1));
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                }
+            }           
+        }
+    } else if (direction === 'down') {
+        if (firstInputs.memory < 10){
+            firstInputs.memory = 10;
+        }
+        if (firstInputs.memory < 99) {
+            const element = document.getElementById("memoryRow-" + (firstInputs.memory + 1));
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+            firstInputs.memory++
+        }
+        
     }
 }
 
@@ -344,15 +369,18 @@ function resetArrows(){
 }
 
 function toAddress(){
-    let address = prompt("Wpisz adres komórki (max. 80)");
+    let address = prompt("Wpisz adres komórki (max. 99)");
 
-    if(address < 0 || address > 80){
+    if(address < 0 || address > 99){
         alert("Niepoprawna cyfra");
         return;
     }
-
-    const div = document.getElementById('memoryTable-scroll');
-    div.scrollTop = address*28;
+    firstInputs.memory = parseInt(address);
+    console.log(firstInputs.memory);
+    const element = document.getElementById("memoryRow-" + (firstInputs.memory ));
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
 }
 
 function createProgramTable(ilosc, numer) {
