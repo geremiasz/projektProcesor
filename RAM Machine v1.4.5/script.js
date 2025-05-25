@@ -489,7 +489,9 @@ async function startProgram(num, firstTime){
         resetTable();
         resetArrows();
     }
-   while (num < currentRowIndex) {
+    let sUCost = 0;
+    while (num < currentRowIndex) {
+        let uCost = document.getElementById("uCost");
         let option = document.getElementById("select-" + num).value;
         let argument = document.getElementById("argument-" + num).value;
         const isChecked = isCheckboxChecked(num);
@@ -516,6 +518,8 @@ async function startProgram(num, firstTime){
         await sleep(1000);
         useFunction(option, argument);
         num++;
+        sUCost++
+        uCost.value = sUCost; // Aktualizacja kosztu jednostkowego
     }
 }
 
