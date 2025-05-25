@@ -561,6 +561,11 @@ function processorMessage(option, argument){
     setTimeout(() => flashElement('instructionInput'), 100);
 }
 
+function updateCost(amount) {
+    let lCost = document.getElementById("lCost");
+    lCost.value = Number(lCost.value) + amount;
+}
+
 function load(argument){
     let input = document.getElementById("load");
     let value = document.getElementById("memoryTable-row-" + argument).textContent;
@@ -610,7 +615,9 @@ function div(argument){
 function read(argument){
     let input = document.getElementById("read");
     let value = document.getElementById("input-" + readGlobal).value;
+    let kRead = koszty.READ(value, argument);
     document.getElementById("memoryTable-row-" + argument).textContent = value;
+    updateCost(kRead);
     showNextArrow('read');
     readGlobal++;
     input.value = ++liczniki.read;
