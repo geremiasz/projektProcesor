@@ -632,11 +632,21 @@ function write(argument){
     input.value = ++liczniki.write;
 }
 
+function findEtykieta(etykieta) {
+    for (let i = 1; i < currentRowIndex; i++) {
+        const label = document.getElementById("etykieta-" + i);
+        if (label && label.value === etykieta) {
+            return i;
+        }
+    }
+}
+
 function jump(option, argument, currentID){
     let input = document.getElementById(option);
     switch(option){
         case "jump":
-            startProgram(argument, false);
+            let instruction =  findEtykieta(argument);
+            startProgram(instruction, false);
             input.value = ++liczniki.jump;
         break;
         case "jgtz":
@@ -644,7 +654,7 @@ function jump(option, argument, currentID){
                 jump("jump", argument, 0);
             }
             else{
-                jump("jump", currentID+1, 0);
+               startProgram(currentID+1, false); // Kontynuuj od następnej instrukcji
             }
             input.value = ++liczniki.jgtz;
         break;
@@ -653,9 +663,9 @@ function jump(option, argument, currentID){
                 jump("jump", argument, 0);
             }
             else{
-                jump("jump", currentID+1, 0);
+                startProgram(currentID+1, false); // Kontynuuj od następnej instrukcji}
+                input.value = ++liczniki.jzero;
             }
-            input.value = ++liczniki.jzero;
         break;
     }
 }
