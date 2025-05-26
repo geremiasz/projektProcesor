@@ -597,6 +597,14 @@ function sub(argument){
 }
 
 function mult(argument){
+    if (argument === "=-1") {
+        let input = document.getElementById("mult");
+        let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
+        value *= -1;
+        document.getElementById("memoryTable-row-0").textContent = value;
+        input.value = ++liczniki.mult;
+        return; // Zakończ funkcję
+    }
     let input = document.getElementById("mult");
     let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
     value *= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
