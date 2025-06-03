@@ -12,6 +12,22 @@ const firstInputs = { //tablica inputów do skrolowania
     memory: 10
 };
 
+// tablica funkcjji
+const options = [
+    "load", 
+    "store", 
+    "add", 
+    "sub", 
+    "mult", 
+    "div", 
+    "read", 
+    "write", 
+    "jump", 
+    "jgtz", 
+    "jzero", 
+    "halt"
+];
+
 // liczniki funkcji
 const liczniki = {
     add: 0,
@@ -74,6 +90,11 @@ window.addEventListener("load", (event) => {
         currentNum++;
         startProgram(currentNum, false);
     });
+
+    options.forEach(option => {
+       let ProgramInput = document.getElementById(option);
+       ProgramInput.value = " ";
+    })
 });
 
 // Sprawdzanie czy plik został wczytany i funlcja do wczytywania pliku
@@ -177,18 +198,7 @@ function createMemoryTable() {
         rowValue.textContent = "?";
         rowValue.className = "memoryTable-valueRow";
         rowValue.id = "memoryTable-row-" + i;
-
-        /*
-        if(i === 0){
-            row.style.backgroundColor = "#cc8029";
-            rowAddress.style.backgroundColor = "#cc8029";
-
-        }else{
-            row.style.backgroundColor = "#525252";
-            rowAddress.style.backgroundColor = "#3f84a3";
-        }
-        */
-
+        
         row.appendChild(rowAddress);
         row.appendChild(rowValue);
         fragment.appendChild(row);
@@ -415,8 +425,6 @@ function createProgramTable(ilosc, numer) {
         element.value = "";
         element.textContent = "";
         instruction.appendChild(element);
-
-        const options = ["load", "store", "add", "sub", "mult", "div", "read", "write", "jump", "jgtz", "jzero", "halt"];
 
         options.forEach(option => {
             const element = document.createElement("option");
