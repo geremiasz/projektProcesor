@@ -614,16 +614,16 @@ function mult(argument){
         return; // Zakończ funkcję
     }
     let input = document.getElementById("mult");
-    let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
-    value *= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
+    let value = parseInt(document.getElementById("memoryTable-row-0").textContent) || 0;
+    value *= parseInt(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
     input.value = ++liczniki.mult;
 }
 
 function div(argument){
     let input = document.getElementById("div");
-    let value = parseFloat(document.getElementById("memoryTable-row-0").textContent) || 0;
-    value /= parseFloat(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
+    let value = parseInt(document.getElementById("memoryTable-row-0").textContent) || 0;
+    value /= parseInt(document.getElementById("memoryTable-row-" + argument).textContent) || 0;
     document.getElementById("memoryTable-row-0").textContent = value;
     input.value = ++liczniki.div;
 }
