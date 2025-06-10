@@ -142,6 +142,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const file = event.target.files[0];
 
         if (file && file.type === "text/plain") {
+             for(let i = currentRowIndex; i > 2; i--){ //Resetowanie programu
+                const row = document.getElementById("programRow-" + (currentRowIndex - 1));
+                row.dispatchEvent(new KeyboardEvent("keydown", { 
+                    bubbles: true,
+                    cancelable: true,
+                    key: "Escape",
+                    code: "Escape",
+                }));
+            }
             const reader = new FileReader();
             reader.onload = function(e) {
                 const content = e.target.result;
@@ -156,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const comment = document.getElementById("comment-" + lineIndex);
                         etykieta.value = lines[i] || " ";
                         instruction.value = lines[i+1] || " ";
+                        console.log(lines[i+1]);
                         argument.value = lines[i+2] || " ";
                         comment.value = lines[i+3] || " ";
                         row.dispatchEvent(new KeyboardEvent("keydown", { // Dodanie nowego wiersza
