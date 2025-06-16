@@ -157,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const lines = content.split('\n'); // Dzielenie na linie
                 console.log(lines.length);
                 let lineIndex = 1; // Indeks linii do dodawania nowych wierszy
-                for(let i = 0; i < (lines.length-1); i++){
+                for(let i = 1; i < (lines.length-1)/4; i++){
+                    const row = document.getElementById("programRow-"+i)
                             row.dispatchEvent(new KeyboardEvent("keydown", { // Dodanie nowego wiersza
                                 bubbles: true,
                                 cancelable: true,
@@ -167,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             }));
                 }
                 for(let i = 0; i< (lines.length-1); i+= 4){ 
-                    const row = document.getElementById("programRow-" + lineIndex);
                     const etykieta = document.getElementById("etykieta-" + lineIndex);
                     const instruction = document.getElementById("select-" + lineIndex);
                     const argument = document.getElementById("argument-" + lineIndex);
