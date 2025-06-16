@@ -93,7 +93,7 @@ window.addEventListener("load", (event) => {
 
     options.forEach(option => {
        let ProgramInput = document.getElementById(option);
-       ProgramInput.value = " ";
+       ProgramInput.value = "";
     })
 });
 
@@ -163,11 +163,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         const instruction = document.getElementById("select-" + lineIndex);
                         const argument = document.getElementById("argument-" + lineIndex);
                         const comment = document.getElementById("comment-" + lineIndex);
-                        etykieta.value = lines[i] || " ";
-                        instruction.value = lines[i+1] || " ";
+                        etykieta.value = lines[i];
+                        instruction.value = lines[i+1];
                         console.log(lines[i+1]);
-                        argument.value = lines[i+2] || " ";
-                        comment.value = lines[i+3] || " ";
+                        argument.value = lines[i+2];
+                        comment.value = lines[i+3];
                         row.dispatchEvent(new KeyboardEvent("keydown", { // Dodanie nowego wiersza
                             bubbles: true,
                             cancelable: true,
@@ -699,7 +699,7 @@ function jump(option, argument, currentID){
 function resetTable(){
     for(let i = 0; i < 100; i++){
         document.getElementById("memoryTable-row-" + i).textContent = "?";
-        if(i > 0){document.getElementById("output-" + i).value = "&nbsp;";}
+        if(i > 0){document.getElementById("output-" + i).value = "";}
     }
 }
 
